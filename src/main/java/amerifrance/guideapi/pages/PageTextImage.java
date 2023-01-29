@@ -1,5 +1,10 @@
 package amerifrance.guideapi.pages;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
+
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.base.Book;
@@ -8,10 +13,6 @@ import amerifrance.guideapi.api.util.GuiHelper;
 import amerifrance.guideapi.gui.GuiBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 
 public class PageTextImage extends PageBase {
 
@@ -33,17 +34,21 @@ public class PageTextImage extends PageBase {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
+    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX,
+            int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
         boolean startFlag = fontRenderer.getUnicodeFlag();
 
         Minecraft.getMinecraft().getTextureManager().bindTexture(image);
-        GuiHelper.drawSizedIconWithoutColor(guiLeft + 50, guiTop + (drawAtTop ? 60 : 12), guiBase.xSize, guiBase.ySize, 0);
+        GuiHelper.drawSizedIconWithoutColor(
+                guiLeft + 50,
+                guiTop + (drawAtTop ? 60 : 12),
+                guiBase.xSize,
+                guiBase.ySize,
+                0);
 
-        if (unicode)
-            fontRenderer.setUnicodeFlag(true);
+        if (unicode) fontRenderer.setUnicodeFlag(true);
         fontRenderer.drawSplitString(draw, guiLeft + 39, guiTop + (drawAtTop ? 12 : 112), 3 * guiBase.xSize / 5, 0);
-        if (unicode && !startFlag)
-            fontRenderer.setUnicodeFlag(false);
+        if (unicode && !startFlag) fontRenderer.setUnicodeFlag(false);
     }
 
     @Override

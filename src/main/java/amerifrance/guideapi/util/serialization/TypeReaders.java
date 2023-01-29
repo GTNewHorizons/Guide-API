@@ -1,5 +1,12 @@
 package amerifrance.guideapi.util.serialization;
 
+import java.lang.reflect.Type;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ResourceLocation;
+
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.abstraction.IPage;
 import amerifrance.guideapi.api.base.CategoryBase;
@@ -9,21 +16,19 @@ import amerifrance.guideapi.entries.EntryText;
 import amerifrance.guideapi.entries.EntryUniText;
 import amerifrance.guideapi.interfaces.ITypeReader;
 import amerifrance.guideapi.pages.*;
+
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
-
-import java.lang.reflect.Type;
-import java.util.List;
 
 public abstract class TypeReaders<T> implements ITypeReader<T> {
 
     // Pages
-    public static TypeReaders<PageFurnaceRecipe> PAGE_FURNACE_RECIPE = new TypeReaders<PageFurnaceRecipe>(PageFurnaceRecipe.class) {
+    public static TypeReaders<PageFurnaceRecipe> PAGE_FURNACE_RECIPE = new TypeReaders<PageFurnaceRecipe>(
+            PageFurnaceRecipe.class) {
+
         @Override
-        public PageFurnaceRecipe deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public PageFurnaceRecipe deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             ItemStack input = context.deserialize(json.getAsJsonObject().get("input"), ItemStack.class);
             return new PageFurnaceRecipe(input);
         }
@@ -35,9 +40,12 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
     };
 
     public static TypeReaders<PageImage> PAGE_IMAGE = new TypeReaders<PageImage>(PageImage.class) {
+
         @Override
-        public PageImage deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            ResourceLocation location = context.deserialize(json.getAsJsonObject().get("image"), ResourceLocation.class);
+        public PageImage deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            ResourceLocation location = context
+                    .deserialize(json.getAsJsonObject().get("image"), ResourceLocation.class);
             return new PageImage(location);
         }
 
@@ -48,8 +56,10 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
     };
 
     public static TypeReaders<PageIRecipe> PAGE_IRECIPE = new TypeReaders<PageIRecipe>(PageIRecipe.class) {
+
         @Override
-        public PageIRecipe deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public PageIRecipe deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             IRecipe recipe = context.deserialize(json.getAsJsonObject().get("recipe"), IRecipe.class);
             return new PageIRecipe(recipe);
         }
@@ -61,9 +71,12 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
     };
 
     public static TypeReaders<PageLocImage> PAGE_IMAGE_LOC = new TypeReaders<PageLocImage>(PageLocImage.class) {
+
         @Override
-        public PageLocImage deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            ResourceLocation location = context.deserialize(json.getAsJsonObject().get("image"), ResourceLocation.class);
+        public PageLocImage deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            ResourceLocation location = context
+                    .deserialize(json.getAsJsonObject().get("image"), ResourceLocation.class);
             String locText = context.deserialize(json.getAsJsonObject().get("locText"), String.class);
             boolean drawAtTop = context.deserialize(json.getAsJsonObject().get("drawAtTop"), Boolean.class);
             return new PageLocImage(locText, location, drawAtTop);
@@ -77,9 +90,12 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
         }
     };
 
-    public static TypeReaders<PageLocItemStack> PAGE_ITEMSTACK_LOC = new TypeReaders<PageLocItemStack>(PageLocItemStack.class) {
+    public static TypeReaders<PageLocItemStack> PAGE_ITEMSTACK_LOC = new TypeReaders<PageLocItemStack>(
+            PageLocItemStack.class) {
+
         @Override
-        public PageLocItemStack deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public PageLocItemStack deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String locText = context.deserialize(json.getAsJsonObject().get("locText"), String.class);
             ItemStack stack = context.deserialize(json.getAsJsonObject().get("itemStack"), ItemStack.class);
             return new PageLocItemStack(locText, stack);
@@ -94,8 +110,10 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
     };
 
     public static TypeReaders<PageLocText> PAGE_TEXT_LOC = new TypeReaders<PageLocText>(PageLocText.class) {
+
         @Override
-        public PageLocText deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public PageLocText deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String locText = context.deserialize(json.getAsJsonObject().get("locText"), String.class);
             return new PageLocText(locText);
         }
@@ -107,8 +125,10 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
     };
 
     public static TypeReaders<PageSound> PAGE_SOUND = new TypeReaders<PageSound>(PageSound.class) {
+
         @Override
-        public PageSound deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public PageSound deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String sound = context.deserialize(json.getAsJsonObject().get("sound"), String.class);
             IPage pageToEmulate = context.deserialize(json.getAsJsonObject().get("pageToEmulate"), IPage.class);
             return new PageSound(pageToEmulate, sound);
@@ -122,9 +142,12 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
     };
 
     public static TypeReaders<PageUnlocImage> PAGE_IMAGE_UNLOC = new TypeReaders<PageUnlocImage>(PageUnlocImage.class) {
+
         @Override
-        public PageUnlocImage deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            ResourceLocation location = context.deserialize(json.getAsJsonObject().get("image"), ResourceLocation.class);
+        public PageUnlocImage deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            ResourceLocation location = context
+                    .deserialize(json.getAsJsonObject().get("image"), ResourceLocation.class);
             String unlocText = context.deserialize(json.getAsJsonObject().get("unlocText"), String.class);
             boolean drawAtTop = context.deserialize(json.getAsJsonObject().get("drawAtTop"), Boolean.class);
             return new PageUnlocImage(unlocText, location, drawAtTop);
@@ -138,9 +161,12 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
         }
     };
 
-    public static TypeReaders<PageUnlocItemStack> PAGE_ITEMSTACK_UNLOC = new TypeReaders<PageUnlocItemStack>(PageUnlocItemStack.class) {
+    public static TypeReaders<PageUnlocItemStack> PAGE_ITEMSTACK_UNLOC = new TypeReaders<PageUnlocItemStack>(
+            PageUnlocItemStack.class) {
+
         @Override
-        public PageUnlocItemStack deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public PageUnlocItemStack deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String unlocText = context.deserialize(json.getAsJsonObject().get("unlocText"), String.class);
             ItemStack stack = context.deserialize(json.getAsJsonObject().get("itemStack"), ItemStack.class);
             return new PageUnlocItemStack(unlocText, stack);
@@ -154,8 +180,10 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
     };
 
     public static TypeReaders<PageUnlocText> PAGE_TEXT_UNLOC = new TypeReaders<PageUnlocText>(PageUnlocText.class) {
+
         @Override
-        public PageUnlocText deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public PageUnlocText deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String unlocText = context.deserialize(json.getAsJsonObject().get("unlocText"), String.class);
             return new PageUnlocText(unlocText);
         }
@@ -169,11 +197,13 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
     // Entries
 
     public static TypeReaders<EntryBase> ENTRY_BASE = new TypeReaders<EntryBase>(EntryBase.class) {
+
         @Override
-        public EntryBase deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public EntryBase deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String name = json.getAsJsonObject().get("unlocEntryName").getAsString();
-            List<IPage> list = context.deserialize(json.getAsJsonObject().get("pageList"), new TypeToken<List<IPage>>() {
-            }.getType());
+            List<IPage> list = context
+                    .deserialize(json.getAsJsonObject().get("pageList"), new TypeToken<List<IPage>>() {}.getType());
             return new EntryBase(list, name);
         }
 
@@ -185,11 +215,13 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
     };
 
     public static TypeReaders<EntryText> ENTRY_TEXT = new TypeReaders<EntryText>(EntryText.class) {
+
         @Override
-        public EntryText deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public EntryText deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String name = json.getAsJsonObject().get("unlocEntryName").getAsString();
-            List<IPage> list = context.deserialize(json.getAsJsonObject().get("pageList"), new TypeToken<List<IPage>>() {
-            }.getType());
+            List<IPage> list = context
+                    .deserialize(json.getAsJsonObject().get("pageList"), new TypeToken<List<IPage>>() {}.getType());
             return new EntryText(list, name);
         }
 
@@ -201,11 +233,13 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
     };
 
     public static TypeReaders<EntryUniText> ENTRY_UNI_TEXT = new TypeReaders<EntryUniText>(EntryUniText.class) {
+
         @Override
-        public EntryUniText deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public EntryUniText deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String name = json.getAsJsonObject().get("unlocEntryName").getAsString();
-            List<IPage> list = context.deserialize(json.getAsJsonObject().get("pageList"), new TypeToken<List<IPage>>() {
-            }.getType());
+            List<IPage> list = context
+                    .deserialize(json.getAsJsonObject().get("pageList"), new TypeToken<List<IPage>>() {}.getType());
             return new EntryUniText(list, name);
         }
 
@@ -219,10 +253,13 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
     // Categories
 
     public static TypeReaders<CategoryBase> CATEGORY_BASE = new TypeReaders<CategoryBase>(CategoryBase.class) {
+
         @Override
-        public CategoryBase deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            List<EntryAbstract> list = context.deserialize(json.getAsJsonObject().get("entryList"), new TypeToken<List<EntryAbstract>>() {
-            }.getType());
+        public CategoryBase deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            List<EntryAbstract> list = context.deserialize(
+                    json.getAsJsonObject().get("entryList"),
+                    new TypeToken<List<EntryAbstract>>() {}.getType());
             String name = json.getAsJsonObject().get("unlocCategoryName").getAsString();
             return new CategoryBase(list, name);
         }
@@ -234,11 +271,15 @@ public abstract class TypeReaders<T> implements ITypeReader<T> {
         }
     };
 
-    public static TypeReaders<CategoryItemStack> CATEGORY_ITEMSTACK = new TypeReaders<CategoryItemStack>(CategoryItemStack.class) {
+    public static TypeReaders<CategoryItemStack> CATEGORY_ITEMSTACK = new TypeReaders<CategoryItemStack>(
+            CategoryItemStack.class) {
+
         @Override
-        public CategoryItemStack deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            List<EntryAbstract> list = context.deserialize(json.getAsJsonObject().get("entryList"), new TypeToken<List<EntryAbstract>>() {
-            }.getType());
+        public CategoryItemStack deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            List<EntryAbstract> list = context.deserialize(
+                    json.getAsJsonObject().get("entryList"),
+                    new TypeToken<List<EntryAbstract>>() {}.getType());
             String name = json.getAsJsonObject().get("unlocCategoryName").getAsString();
             ItemStack stack = context.deserialize(json.getAsJsonObject().get("itemStack"), ItemStack.class);
             return new CategoryItemStack(list, name, stack);

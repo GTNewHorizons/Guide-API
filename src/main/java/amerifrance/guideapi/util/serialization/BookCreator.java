@@ -1,5 +1,15 @@
 package amerifrance.guideapi.util.serialization;
 
+import java.awt.*;
+import java.io.*;
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.item.ItemStack;
+
+import org.apache.commons.io.filefilter.FileFilterUtils;
+
 import amerifrance.guideapi.GuideAPI;
 import amerifrance.guideapi.api.GuideRegistry;
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
@@ -8,20 +18,11 @@ import amerifrance.guideapi.api.abstraction.IPage;
 import amerifrance.guideapi.api.base.Book;
 import amerifrance.guideapi.api.util.BookBuilder;
 import amerifrance.guideapi.interfaces.ITypeReader;
+
 import com.google.common.collect.Maps;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import cpw.mods.fml.common.registry.GameData;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import org.apache.commons.io.filefilter.FileFilterUtils;
-
-import java.awt.*;
-import java.io.*;
-import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Map;
 
 public class BookCreator {
 
@@ -50,7 +51,8 @@ public class BookCreator {
         try {
             Gson gson = gsonBuilder.setPrettyPrinting().create();
             String reverse = gson.toJson(book, Book.class);
-            FileWriter fw = new FileWriter(new File(GuideAPI.getConfigDir().getPath(), book.getLocalizedDisplayName() + ".json"));
+            FileWriter fw = new FileWriter(
+                    new File(GuideAPI.getConfigDir().getPath(), book.getLocalizedDisplayName() + ".json"));
             fw.write(reverse);
             fw.close();
         } catch (IOException e) {
@@ -76,7 +78,8 @@ public class BookCreator {
     public static class CustomItemStackJson implements JsonDeserializer<ItemStack>, JsonSerializer<ItemStack> {
 
         @Override
-        public ItemStack deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public ItemStack deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String name = json.getAsJsonObject().get("name").getAsString();
             int meta = json.getAsJsonObject().get("metadata").getAsInt();
 
@@ -96,7 +99,8 @@ public class BookCreator {
     public static class CustomColorJson implements JsonDeserializer<Color>, JsonSerializer<Color> {
 
         @Override
-        public Color deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public Color deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             int red = json.getAsJsonObject().get("red").getAsInt();
             int green = json.getAsJsonObject().get("green").getAsInt();
             int blue = json.getAsJsonObject().get("blue").getAsInt();
@@ -118,7 +122,8 @@ public class BookCreator {
     public static class CustomPageJson implements JsonDeserializer<IPage>, JsonSerializer<IPage> {
 
         @Override
-        public IPage deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public IPage deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String name = context.deserialize(json.getAsJsonObject().get("type"), String.class);
             return (IPage) serializers.get(idents.get(name)).deserialize(json, typeOfT, context);
         }
@@ -133,7 +138,8 @@ public class BookCreator {
     public static class CustomEntryJson implements JsonDeserializer<EntryAbstract>, JsonSerializer<EntryAbstract> {
 
         @Override
-        public EntryAbstract deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public EntryAbstract deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String name = context.deserialize(json.getAsJsonObject().get("type"), String.class);
             return (EntryAbstract) serializers.get(idents.get(name)).deserialize(json, typeOfT, context);
         }
@@ -145,10 +151,12 @@ public class BookCreator {
         }
     }
 
-    public static class CustomCategoryJson implements JsonDeserializer<CategoryAbstract>, JsonSerializer<CategoryAbstract> {
+    public static class CustomCategoryJson
+            implements JsonDeserializer<CategoryAbstract>, JsonSerializer<CategoryAbstract> {
 
         @Override
-        public CategoryAbstract deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public CategoryAbstract deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String name = context.deserialize(json.getAsJsonObject().get("type"), String.class);
             return (CategoryAbstract) serializers.get(idents.get(name)).deserialize(json, typeOfT, context);
         }
@@ -163,7 +171,8 @@ public class BookCreator {
     public static class CustomBookJson implements JsonDeserializer<Book>, JsonSerializer<Book> {
 
         @Override
-        public Book deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public Book deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
             String displayName = json.getAsJsonObject().get("unlocDisplayName").getAsString();
             String welcome = json.getAsJsonObject().get("unlocWelcomeMessage").getAsString();
             String title = json.getAsJsonObject().get("unlocBookTitle").getAsString();
@@ -172,10 +181,11 @@ public class BookCreator {
             boolean spawnWithBook = json.getAsJsonObject().get("spawnWithBook").getAsBoolean();
             boolean isLostBook = json.getAsJsonObject().get("isLostBook").getAsBoolean();
             int lootChance = json.getAsJsonObject().get("lootChance").getAsInt();
-            String[] chestHooks = context.deserialize(json.getAsJsonObject().get("chestHooks"), new TypeToken<String[]>() {
-            }.getType());
-            List<CategoryAbstract> list = context.deserialize(json.getAsJsonObject().get("categoryList"), new TypeToken<List<CategoryAbstract>>() {
-            }.getType());
+            String[] chestHooks = context
+                    .deserialize(json.getAsJsonObject().get("chestHooks"), new TypeToken<String[]>() {}.getType());
+            List<CategoryAbstract> list = context.deserialize(
+                    json.getAsJsonObject().get("categoryList"),
+                    new TypeToken<List<CategoryAbstract>>() {}.getType());
 
             BookBuilder builder = new BookBuilder();
             builder.setCategories(list);

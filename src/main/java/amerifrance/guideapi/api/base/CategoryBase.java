@@ -1,5 +1,12 @@
 package amerifrance.guideapi.api.base;
 
+import java.util.List;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.gui.GuiBase;
@@ -7,12 +14,6 @@ import amerifrance.guideapi.gui.GuiCategory;
 import amerifrance.guideapi.gui.GuiHome;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-
-import java.util.List;
 
 public class CategoryBase extends CategoryAbstract {
 
@@ -22,13 +23,13 @@ public class CategoryBase extends CategoryAbstract {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void draw(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight, int mouseX, int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem) {
-    }
+    public void draw(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight, int mouseX,
+            int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem) {}
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void drawExtras(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight, int mouseX, int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem) {
-    }
+    public void drawExtras(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight, int mouseX,
+            int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem) {}
 
     @Override
     public boolean canSee(EntityPlayer player, ItemStack bookStack) {
@@ -43,11 +44,9 @@ public class CategoryBase extends CategoryAbstract {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void onRightClicked(Book book, int mouseX, int mouseY, EntityPlayer player, ItemStack bookStack) {
-    }
+    public void onRightClicked(Book book, int mouseX, int mouseY, EntityPlayer player, ItemStack bookStack) {}
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void onInit(Book book, GuiHome guiHome, EntityPlayer player, ItemStack bookStack) {
-    }
+    public void onInit(Book book, GuiHome guiHome, EntityPlayer player, ItemStack bookStack) {}
 }

@@ -28,7 +28,7 @@ public class TextHelper {
     public static final String STRIKETHROUGH = (char) 167 + "m";
     public static final String UNDERLINE = (char) 167 + "n";
     public static final String ITALIC = (char) 167 + "o";
-    //This resets color and formatting
+    // This resets color and formatting
     public static final String END = (char) 167 + "r";
 
     // Localization

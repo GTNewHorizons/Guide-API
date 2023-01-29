@@ -1,5 +1,11 @@
 package amerifrance.guideapi.categories;
 
+import java.util.List;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.util.ResourceLocation;
+
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.base.Book;
 import amerifrance.guideapi.api.base.CategoryBase;
@@ -7,32 +13,31 @@ import amerifrance.guideapi.api.util.GuiHelper;
 import amerifrance.guideapi.gui.GuiBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.util.ResourceLocation;
-
-import java.util.List;
 
 public class CategoryResourceLocation extends CategoryBase {
 
     public ResourceLocation resourceLocation;
 
-    public CategoryResourceLocation(List<EntryAbstract> entryList, String unlocCategoryName, ResourceLocation resourceLocation) {
+    public CategoryResourceLocation(List<EntryAbstract> entryList, String unlocCategoryName,
+            ResourceLocation resourceLocation) {
         super(entryList, unlocCategoryName);
         this.resourceLocation = resourceLocation;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void draw(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight, int mouseX, int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem) {
+    public void draw(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight, int mouseX,
+            int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation);
         GuiHelper.drawSizedIconWithoutColor(categoryX, categoryY, 48, 48, 0);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void drawExtras(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight, int mouseX, int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem) {
-        if (canSee(guiBase.player, guiBase.bookStack) && GuiHelper.isMouseBetween(mouseX, mouseY, categoryX, categoryY, categoryWidth, categoryHeight))
+    public void drawExtras(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight, int mouseX,
+            int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem) {
+        if (canSee(guiBase.player, guiBase.bookStack)
+                && GuiHelper.isMouseBetween(mouseX, mouseY, categoryX, categoryY, categoryWidth, categoryHeight))
             guiBase.drawHoveringText(this.getTooltip(), mouseX, mouseY, Minecraft.getMinecraft().fontRenderer);
     }
 
@@ -44,7 +49,8 @@ public class CategoryResourceLocation extends CategoryBase {
 
         CategoryResourceLocation that = (CategoryResourceLocation) object;
 
-        return !(resourceLocation != null ? !resourceLocation.equals(that.resourceLocation) : that.resourceLocation != null);
+        return !(resourceLocation != null ? !resourceLocation.equals(that.resourceLocation)
+                : that.resourceLocation != null);
     }
 
     @Override

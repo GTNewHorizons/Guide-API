@@ -1,5 +1,8 @@
 package amerifrance.guideapi.pages;
 
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.util.StatCollector;
+
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.base.Book;
@@ -7,8 +10,6 @@ import amerifrance.guideapi.api.base.PageBase;
 import amerifrance.guideapi.gui.GuiBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.StatCollector;
 
 /**
  * Use {@link PageText}
@@ -45,9 +46,15 @@ public class PageUnlocText extends PageBase {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
+    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX,
+            int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
         fontRenderer.setUnicodeFlag(true);
-        fontRenderer.drawSplitString(StatCollector.translateToLocal(unlocText), guiLeft + 39, guiTop + 12 + yOffset, 3 * guiBase.xSize / 5, 0);
+        fontRenderer.drawSplitString(
+                StatCollector.translateToLocal(unlocText),
+                guiLeft + 39,
+                guiTop + 12 + yOffset,
+                3 * guiBase.xSize / 5,
+                0);
         fontRenderer.setUnicodeFlag(false);
     }
 

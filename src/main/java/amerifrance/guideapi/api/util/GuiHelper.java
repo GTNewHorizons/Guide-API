@@ -1,5 +1,8 @@
 package amerifrance.guideapi.api.util;
 
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL12.GL_RESCALE_NORMAL;
+
 import java.awt.Color;
 import java.util.List;
 
@@ -10,12 +13,9 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL12.GL_RESCALE_NORMAL;
-
 public class GuiHelper {
-	
-	private static final RenderItem render = new RenderItem();
+
+    private static final RenderItem render = new RenderItem();
 
     /**
      * @param mouseX - Position of the mouse on the x-axiq
@@ -38,17 +38,27 @@ public class GuiHelper {
      * @param y     - The position on the y-axis to draw the itemstack
      */
     public static void drawItemStack(ItemStack stack, int x, int y) {
-		glPushMatrix();
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		RenderHelper.enableGUIStandardItemLighting();
-		glEnable(GL_RESCALE_NORMAL);
-		glEnable(GL_DEPTH_TEST);
-		render.renderItemAndEffectIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, x, y);
-		render.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, x, y);
-		RenderHelper.disableStandardItemLighting();
-		glPopMatrix();
-		glDisable(GL_LIGHTING);
+        glPushMatrix();
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        RenderHelper.enableGUIStandardItemLighting();
+        glEnable(GL_RESCALE_NORMAL);
+        glEnable(GL_DEPTH_TEST);
+        render.renderItemAndEffectIntoGUI(
+                Minecraft.getMinecraft().fontRenderer,
+                Minecraft.getMinecraft().getTextureManager(),
+                stack,
+                x,
+                y);
+        render.renderItemOverlayIntoGUI(
+                Minecraft.getMinecraft().fontRenderer,
+                Minecraft.getMinecraft().getTextureManager(),
+                stack,
+                x,
+                y);
+        RenderHelper.disableStandardItemLighting();
+        glPopMatrix();
+        glDisable(GL_LIGHTING);
     }
 
     /**
@@ -63,10 +73,20 @@ public class GuiHelper {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glScalef(scale, scale, 1.0F);
         RenderHelper.enableGUIStandardItemLighting();
-		glEnable(GL_RESCALE_NORMAL);
-		glEnable(GL_DEPTH_TEST);
-        render.renderItemAndEffectIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, (int) (x / scale), (int) (y / scale));
-        render.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, x, y);
+        glEnable(GL_RESCALE_NORMAL);
+        glEnable(GL_DEPTH_TEST);
+        render.renderItemAndEffectIntoGUI(
+                Minecraft.getMinecraft().fontRenderer,
+                Minecraft.getMinecraft().getTextureManager(),
+                stack,
+                (int) (x / scale),
+                (int) (y / scale));
+        render.renderItemOverlayIntoGUI(
+                Minecraft.getMinecraft().fontRenderer,
+                Minecraft.getMinecraft().getTextureManager(),
+                stack,
+                x,
+                y);
         RenderHelper.disableStandardItemLighting();
         glPopMatrix();
     }
@@ -112,7 +132,11 @@ public class GuiHelper {
         RenderHelper.enableGUIStandardItemLighting();
         glEnable(GL_RESCALE_NORMAL);
         glEnable(GL_DEPTH_TEST);
-        glColor4f((float) color.getRed() / 255F, (float) color.getGreen() / 255F, (float) color.getBlue() / 255F, (float) color.getAlpha() / 255F);
+        glColor4f(
+                (float) color.getRed() / 255F,
+                (float) color.getGreen() / 255F,
+                (float) color.getBlue() / 255F,
+                (float) color.getAlpha() / 255F);
         Tessellator t = Tessellator.instance;
         t.startDrawingQuads();
         t.addVertexWithUV(x + 0, y + height, zLevel, 0D, 1D);
@@ -168,7 +192,11 @@ public class GuiHelper {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glScaled(0.5D, 0.5D, 0.5D);
-        glColor4f((float) color.getRed() / 255F, (float) color.getGreen() / 255F, (float) color.getBlue() / 255F, (float) color.getAlpha() / 255F);
+        glColor4f(
+                (float) color.getRed() / 255F,
+                (float) color.getGreen() / 255F,
+                (float) color.getBlue() / 255F,
+                (float) color.getAlpha() / 255F);
         glTranslated(x, y, zLevel);
         RenderHelper.enableGUIStandardItemLighting();
         glEnable(GL_RESCALE_NORMAL);
@@ -181,23 +209,23 @@ public class GuiHelper {
         t.addVertexWithUV(x + 0, y + 0, zLevel, 0D, 0D);
         t.draw();
         RenderHelper.disableStandardItemLighting();
-		glDisable(GL_LIGHTING);
-		glPopMatrix();
-	}
+        glDisable(GL_LIGHTING);
+        glPopMatrix();
+    }
 
-	@SuppressWarnings("unchecked")
-	public static List<String> getTooltip(ItemStack stack) {
-		Minecraft mc = Minecraft.getMinecraft();
-		List<String> list = stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);
+    @SuppressWarnings("unchecked")
+    public static List<String> getTooltip(ItemStack stack) {
+        Minecraft mc = Minecraft.getMinecraft();
+        List<String> list = stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);
 
-		for (int k = 0; k < list.size(); ++k) {
-			if (k == 0) {
-				list.set(k, stack.getRarity().rarityColor + (String) list.get(k));
-			} else {
-				list.set(k, EnumChatFormatting.GRAY + (String) list.get(k));
-			}
-		}
+        for (int k = 0; k < list.size(); ++k) {
+            if (k == 0) {
+                list.set(k, stack.getRarity().rarityColor + (String) list.get(k));
+            } else {
+                list.set(k, EnumChatFormatting.GRAY + (String) list.get(k));
+            }
+        }
 
-		return list;
-	}
+        return list;
+    }
 }

@@ -1,23 +1,26 @@
 package amerifrance.guideapi.api.util;
 
-import amerifrance.guideapi.api.abstraction.IPage;
-import amerifrance.guideapi.pages.PageLocItemStack;
-import amerifrance.guideapi.pages.PageLocText;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+
 import org.apache.commons.lang3.text.WordUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import amerifrance.guideapi.api.abstraction.IPage;
+import amerifrance.guideapi.pages.PageLocItemStack;
+import amerifrance.guideapi.pages.PageLocText;
 
 public class PageHelper {
 
     public static List<IPage> pagesForLongText(String locText, int maxLength) {
         List<IPage> pageList = new ArrayList<IPage>();
-        for (String s : WordUtils.wrap(locText, maxLength, "/cut", false).split("/cut")) pageList.add(new PageLocText(s));
+        for (String s : WordUtils.wrap(locText, maxLength, "/cut", false).split("/cut"))
+            pageList.add(new PageLocText(s));
         return pageList;
     }
 
@@ -38,7 +41,6 @@ public class PageHelper {
         }
         return pageList;
     }
-
 
     /**
      * @param locText - Text

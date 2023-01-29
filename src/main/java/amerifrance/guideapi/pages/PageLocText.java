@@ -1,16 +1,16 @@
 package amerifrance.guideapi.pages;
 
+import java.awt.*;
+
+import net.minecraft.client.gui.FontRenderer;
+
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.base.Book;
 import amerifrance.guideapi.api.base.PageBase;
-import amerifrance.guideapi.api.util.GuiHelper;
 import amerifrance.guideapi.gui.GuiBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.gui.FontRenderer;
-
-import java.awt.*;
 
 /**
  * Use {@link PageText}
@@ -47,16 +47,15 @@ public class PageLocText extends PageBase {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
+    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX,
+            int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
         boolean startFlag = fontRenderer.getUnicodeFlag();
 
-        if (unicode)
-            fontRenderer.setUnicodeFlag(true);
+        if (unicode) fontRenderer.setUnicodeFlag(true);
 
         fontRenderer.drawSplitString(locText, guiLeft + 39, guiTop + 12 + yOffset, 3 * guiBase.xSize / 5, 0);
 
-        if (unicode && !startFlag)
-            fontRenderer.setUnicodeFlag(false);
+        if (unicode && !startFlag) fontRenderer.setUnicodeFlag(false);
     }
 
     @Override

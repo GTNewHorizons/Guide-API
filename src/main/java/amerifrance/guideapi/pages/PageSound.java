@@ -1,5 +1,10 @@
 package amerifrance.guideapi.pages;
 
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+
 import amerifrance.guideapi.GuideAPI;
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
@@ -10,10 +15,6 @@ import amerifrance.guideapi.gui.GuiBase;
 import amerifrance.guideapi.gui.GuiEntry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
 public class PageSound extends PageBase {
 
@@ -31,31 +32,36 @@ public class PageSound extends PageBase {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
+    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX,
+            int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
         pageToEmulate.draw(book, category, entry, guiLeft, guiTop, mouseX, mouseY, guiBase, fontRenderer);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void drawExtras(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
+    public void drawExtras(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop,
+            int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
         pageToEmulate.drawExtras(book, category, entry, guiLeft, guiTop, mouseX, mouseY, guiBase, fontRenderer);
     }
 
     @Override
-    public boolean canSee(Book book, CategoryAbstract category, EntryAbstract entry, EntityPlayer player, ItemStack bookStack, GuiEntry guiEntry) {
+    public boolean canSee(Book book, CategoryAbstract category, EntryAbstract entry, EntityPlayer player,
+            ItemStack bookStack, GuiEntry guiEntry) {
         return pageToEmulate.canSee(book, category, entry, player, bookStack, guiEntry);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void onLeftClicked(Book book, CategoryAbstract category, EntryAbstract entry, int mouseX, int mouseY, EntityPlayer player, GuiEntry guiEntry) {
+    public void onLeftClicked(Book book, CategoryAbstract category, EntryAbstract entry, int mouseX, int mouseY,
+            EntityPlayer player, GuiEntry guiEntry) {
         GuideAPI.proxy.playSound(new ResourceLocation(sound));
         pageToEmulate.onLeftClicked(book, category, entry, mouseX, mouseY, player, guiEntry);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void onRightClicked(Book book, CategoryAbstract category, EntryAbstract entry, int mouseX, int mouseY, EntityPlayer player, GuiEntry guiEntry) {
+    public void onRightClicked(Book book, CategoryAbstract category, EntryAbstract entry, int mouseX, int mouseY,
+            EntityPlayer player, GuiEntry guiEntry) {
         pageToEmulate.onRightClicked(book, category, entry, mouseX, mouseY, player, guiEntry);
     }
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.base.Book;
@@ -32,7 +33,8 @@ public class ShapedOreRecipeRenderer extends BasicRecipeRenderer<ShapedOreRecipe
 
     @SuppressWarnings("unchecked")
     @Override
-    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
+    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX,
+            int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
         super.draw(book, category, entry, guiLeft, guiTop, mouseX, mouseY, guiBase, fontRenderer);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {

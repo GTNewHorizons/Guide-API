@@ -1,5 +1,11 @@
 package amerifrance.guideapi.proxies;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+
 import amerifrance.guideapi.api.GuideRegistry;
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
@@ -7,14 +13,8 @@ import amerifrance.guideapi.api.base.Book;
 import amerifrance.guideapi.api.util.NBTBookTags;
 import amerifrance.guideapi.gui.GuiCategory;
 import amerifrance.guideapi.gui.GuiEntry;
-import amerifrance.guideapi.gui.GuiHome;
 import amerifrance.guideapi.gui.GuiHomeNew;
 import cpw.mods.fml.common.network.IGuiHandler;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 
 public class CommonProxy implements IGuiHandler {
 
@@ -52,9 +52,8 @@ public class CommonProxy implements IGuiHandler {
         return new GuiHomeNew(book, player, stack);
     }
 
-    public void playSound(ResourceLocation sound) {
-    }
+    public void playSound(ResourceLocation sound) {}
 
-    public void openEntry(Book book, CategoryAbstract categoryAbstract, EntryAbstract entryAbstract, EntityPlayer player, ItemStack stack) {
-    }
+    public void openEntry(Book book, CategoryAbstract categoryAbstract, EntryAbstract entryAbstract,
+            EntityPlayer player, ItemStack stack) {}
 }

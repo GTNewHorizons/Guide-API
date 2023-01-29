@@ -1,15 +1,16 @@
 package amerifrance.guideapi.wrappers;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.base.Book;
 import amerifrance.guideapi.api.util.GuiHelper;
 import amerifrance.guideapi.gui.GuiBase;
 import amerifrance.guideapi.gui.GuiCategory;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 public class EntryWrapper extends AbstractWrapper {
 
@@ -22,7 +23,8 @@ public class EntryWrapper extends AbstractWrapper {
     public GuiCategory categoryGui;
     public ItemStack bookStack;
 
-    public EntryWrapper(GuiCategory categoryGui, Book book, CategoryAbstract category, EntryAbstract entry, int x, int y, int width, int height, EntityPlayer player, FontRenderer renderer, ItemStack bookStack) {
+    public EntryWrapper(GuiCategory categoryGui, Book book, CategoryAbstract category, EntryAbstract entry, int x,
+            int y, int width, int height, EntityPlayer player, FontRenderer renderer, ItemStack bookStack) {
         this.book = book;
         this.category = category;
         this.entry = entry;
@@ -37,8 +39,7 @@ public class EntryWrapper extends AbstractWrapper {
     }
 
     @Override
-    public void onHoverOver(int mouseX, int mouseY) {
-    }
+    public void onHoverOver(int mouseX, int mouseY) {}
 
     @Override
     public boolean canPlayerSee() {
@@ -52,7 +53,17 @@ public class EntryWrapper extends AbstractWrapper {
 
     @Override
     public void drawExtras(int mouseX, int mouseY, GuiBase gui) {
-        entry.drawExtras(book, category, x, y, width, height, mouseX, mouseY, gui, Minecraft.getMinecraft().fontRenderer);
+        entry.drawExtras(
+                book,
+                category,
+                x,
+                y,
+                width,
+                height,
+                mouseX,
+                mouseY,
+                gui,
+                Minecraft.getMinecraft().fontRenderer);
     }
 
     @Override

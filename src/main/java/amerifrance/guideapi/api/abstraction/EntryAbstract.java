@@ -1,17 +1,18 @@
 package amerifrance.guideapi.api.abstraction;
 
-import amerifrance.guideapi.api.base.Book;
-import amerifrance.guideapi.gui.GuiBase;
-import amerifrance.guideapi.gui.GuiCategory;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
-import java.util.ArrayList;
-import java.util.List;
+import amerifrance.guideapi.api.base.Book;
+import amerifrance.guideapi.gui.GuiBase;
+import amerifrance.guideapi.gui.GuiCategory;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class EntryAbstract {
 
@@ -50,21 +51,26 @@ public abstract class EntryAbstract {
     }
 
     @SideOnly(Side.CLIENT)
-    public abstract void draw(Book book, CategoryAbstract category, int entryX, int entryY, int entryWidth, int entryHeight, int mouseX, int mouseY, GuiBase guiBase, FontRenderer renderer);
+    public abstract void draw(Book book, CategoryAbstract category, int entryX, int entryY, int entryWidth,
+            int entryHeight, int mouseX, int mouseY, GuiBase guiBase, FontRenderer renderer);
 
     @SideOnly(Side.CLIENT)
-    public abstract void drawExtras(Book book, CategoryAbstract category, int entryX, int entryY, int entryWidth, int entryHeight, int mouseX, int mouseY, GuiBase guiBase, FontRenderer renderer);
+    public abstract void drawExtras(Book book, CategoryAbstract category, int entryX, int entryY, int entryWidth,
+            int entryHeight, int mouseX, int mouseY, GuiBase guiBase, FontRenderer renderer);
 
     public abstract boolean canSee(EntityPlayer player, ItemStack bookStack);
 
     @SideOnly(Side.CLIENT)
-    public abstract void onLeftClicked(Book book, CategoryAbstract category, int mouseX, int mouseY, EntityPlayer player, GuiCategory guiCategory);
+    public abstract void onLeftClicked(Book book, CategoryAbstract category, int mouseX, int mouseY,
+            EntityPlayer player, GuiCategory guiCategory);
 
     @SideOnly(Side.CLIENT)
-    public abstract void onRightClicked(Book book, CategoryAbstract category, int mouseX, int mouseY, EntityPlayer player, GuiCategory guiCategory);
+    public abstract void onRightClicked(Book book, CategoryAbstract category, int mouseX, int mouseY,
+            EntityPlayer player, GuiCategory guiCategory);
 
     @SideOnly(Side.CLIENT)
-    public abstract void onInit(Book book, CategoryAbstract category, GuiCategory guiCategory, EntityPlayer player, ItemStack bookStack);
+    public abstract void onInit(Book book, CategoryAbstract category, GuiCategory guiCategory, EntityPlayer player,
+            ItemStack bookStack);
 
     @Override
     public boolean equals(Object o) {

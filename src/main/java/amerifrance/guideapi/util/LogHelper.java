@@ -1,9 +1,10 @@
 package amerifrance.guideapi.util;
 
-import amerifrance.guideapi.ConfigHandler;
-import amerifrance.guideapi.ModInformation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import amerifrance.guideapi.ConfigHandler;
+import amerifrance.guideapi.ModInformation;
 
 public class LogHelper {
 
@@ -14,8 +15,7 @@ public class LogHelper {
      */
 
     public static void info(Object info) {
-        if (ConfigHandler.enableLogging)
-            logger.info(info);
+        if (ConfigHandler.enableLogging) logger.info(info);
     }
 
     /**
@@ -23,8 +23,7 @@ public class LogHelper {
      */
 
     public static void error(Object error) {
-        if (ConfigHandler.enableLogging)
-            logger.error(error);
+        if (ConfigHandler.enableLogging) logger.error(error);
     }
 
     /**
@@ -32,7 +31,6 @@ public class LogHelper {
      */
 
     public static void debug(Object debug) {
-        if (ConfigHandler.enableLogging)
-            logger.debug(debug);
+        if (ConfigHandler.enableLogging) logger.debug(debug);
     }
 }

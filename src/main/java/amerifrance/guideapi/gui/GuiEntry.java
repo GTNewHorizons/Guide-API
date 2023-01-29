@@ -1,5 +1,18 @@
 package amerifrance.guideapi.gui;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.abstraction.IPage;
@@ -10,17 +23,6 @@ import amerifrance.guideapi.buttons.ButtonPrev;
 import amerifrance.guideapi.network.PacketHandler;
 import amerifrance.guideapi.network.PacketSyncEntry;
 import amerifrance.guideapi.wrappers.PageWrapper;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GuiEntry extends GuiBase {
 
@@ -35,7 +37,8 @@ public class GuiEntry extends GuiBase {
     public ButtonPrev buttonPrev;
     public int pageNumber;
 
-    public GuiEntry(Book book, CategoryAbstract category, EntryAbstract entry, EntityPlayer player, ItemStack bookStack) {
+    public GuiEntry(Book book, CategoryAbstract category, EntryAbstract entry, EntityPlayer player,
+            ItemStack bookStack) {
         super(player, bookStack);
         this.book = book;
         this.category = category;
@@ -60,7 +63,18 @@ public class GuiEntry extends GuiBase {
 
         for (IPage page : this.entry.pageList) {
             page.onInit(book, category, entry, player, bookStack, this);
-            pageWrapperList.add(new PageWrapper(this, book, category, entry, page, guiLeft, guiTop, player, this.fontRendererObj, bookStack));
+            pageWrapperList.add(
+                    new PageWrapper(
+                            this,
+                            book,
+                            category,
+                            entry,
+                            page,
+                            guiLeft,
+                            guiTop,
+                            player,
+                            this.fontRendererObj,
+                            bookStack));
         }
     }
 
@@ -78,8 +92,18 @@ public class GuiEntry extends GuiBase {
             }
         }
 
-        drawCenteredString(fontRendererObj, String.valueOf(pageNumber + 1) + "/" + String.valueOf(pageWrapperList.size()), guiLeft + xSize / 2, guiTop + 5 * ySize / 6, 0);
-        drawCenteredStringWithShadow(fontRendererObj, entry.getLocalizedName(), guiLeft + xSize / 2, guiTop - 10, Color.WHITE.getRGB());
+        drawCenteredString(
+                fontRendererObj,
+                String.valueOf(pageNumber + 1) + "/" + String.valueOf(pageWrapperList.size()),
+                guiLeft + xSize / 2,
+                guiTop + 5 * ySize / 6,
+                0);
+        drawCenteredStringWithShadow(
+                fontRendererObj,
+                entry.getLocalizedName(),
+                guiLeft + xSize / 2,
+                guiTop - 10,
+                Color.WHITE.getRGB());
 
         buttonPrev.visible = pageNumber != 0;
         buttonNext.visible = pageNumber != pageWrapperList.size() - 1;
@@ -93,10 +117,12 @@ public class GuiEntry extends GuiBase {
         for (PageWrapper wrapper : this.pageWrapperList) {
             if (wrapper.isMouseOnWrapper(mouseX, mouseY) && wrapper.canPlayerSee()) {
                 if (typeofClick == 0) {
-                    pageWrapperList.get(pageNumber).page.onLeftClicked(book, category, entry, mouseX, mouseY, player, this);
+                    pageWrapperList.get(pageNumber).page
+                            .onLeftClicked(book, category, entry, mouseX, mouseY, player, this);
                 }
                 if (typeofClick == 1) {
-                    pageWrapperList.get(pageNumber).page.onRightClicked(book, category, entry, mouseX, mouseY, player, this);
+                    pageWrapperList.get(pageNumber).page
+                            .onRightClicked(book, category, entry, mouseX, mouseY, player, this);
                 }
             }
         }
@@ -111,10 +137,8 @@ public class GuiEntry extends GuiBase {
         super.handleMouseInput();
 
         int movement = Mouse.getEventDWheel();
-        if(movement < 0)
-            nextPage();
-        else if(movement > 0)
-            prevPage();
+        if (movement < 0) nextPage();
+        else if (movement > 0) prevPage();
     }
 
     @Override
@@ -124,34 +148,32 @@ public class GuiEntry extends GuiBase {
             this.mc.displayGuiScreen(new GuiCategory(book, category, player, bookStack));
         if ((keyCode == Keyboard.KEY_UP || keyCode == Keyboard.KEY_RIGHT) && pageNumber + 1 < pageWrapperList.size())
             nextPage();
-        if ((keyCode == Keyboard.KEY_DOWN || keyCode == Keyboard.KEY_LEFT) && pageNumber > 0)
-            prevPage();
+        if ((keyCode == Keyboard.KEY_DOWN || keyCode == Keyboard.KEY_LEFT) && pageNumber > 0) prevPage();
     }
 
     @Override
     public void actionPerformed(GuiButton button) {
-        if (button.id == 0)
-            this.mc.displayGuiScreen(new GuiCategory(book, category, player, bookStack));
-        else if (button.id == 1 && pageNumber + 1 < pageWrapperList.size())
-            nextPage();
-        else if (button.id == 2 && pageNumber > 0)
-            prevPage();
+        if (button.id == 0) this.mc.displayGuiScreen(new GuiCategory(book, category, player, bookStack));
+        else if (button.id == 1 && pageNumber + 1 < pageWrapperList.size()) nextPage();
+        else if (button.id == 2 && pageNumber > 0) prevPage();
     }
 
     @Override
     public void onGuiClosed() {
         super.onGuiClosed();
 
-        PacketHandler.INSTANCE.sendToServer(new PacketSyncEntry(book.categoryList.indexOf(category), category.entryList.indexOf(entry), pageNumber));
+        PacketHandler.INSTANCE.sendToServer(
+                new PacketSyncEntry(
+                        book.categoryList.indexOf(category),
+                        category.entryList.indexOf(entry),
+                        pageNumber));
     }
 
     public void nextPage() {
-        if (pageNumber != pageWrapperList.size() - 1)
-            pageNumber++;
+        if (pageNumber != pageWrapperList.size() - 1) pageNumber++;
     }
 
     public void prevPage() {
-        if (pageNumber != 0)
-            pageNumber--;
+        if (pageNumber != 0) pageNumber--;
     }
 }

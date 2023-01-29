@@ -1,5 +1,12 @@
 package amerifrance.guideapi.pages;
 
+import net.minecraft.block.Block;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.base.Book;
@@ -7,12 +14,6 @@ import amerifrance.guideapi.api.util.GuiHelper;
 import amerifrance.guideapi.gui.GuiBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Use {@link PageItemStack}
@@ -58,17 +59,17 @@ public class PageLocItemStack extends PageLocText {
 
         this.stack = new ItemStack(Blocks.fire);
 
-        if (!OreDictionary.getOres(entry).isEmpty())
-            for (int i = 0; i < OreDictionary.getOres(entry).size(); i++) {
-                ItemStack stack = OreDictionary.getOres(entry).get(i);
+        if (!OreDictionary.getOres(entry).isEmpty()) for (int i = 0; i < OreDictionary.getOres(entry).size(); i++) {
+            ItemStack stack = OreDictionary.getOres(entry).get(i);
 
-                this.stack = stack;
-            }
+            this.stack = stack;
+        }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void drawExtras(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
+    public void drawExtras(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop,
+            int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
         GuiHelper.drawScaledItemStack(stack, guiLeft + 75, guiTop + 20, 3);
     }
 

@@ -1,17 +1,18 @@
 package amerifrance.guideapi.api.abstraction;
 
-import amerifrance.guideapi.api.base.Book;
-import amerifrance.guideapi.gui.GuiBase;
-import amerifrance.guideapi.gui.GuiHome;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
-import java.util.ArrayList;
-import java.util.List;
+import amerifrance.guideapi.api.base.Book;
+import amerifrance.guideapi.gui.GuiBase;
+import amerifrance.guideapi.gui.GuiHome;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class CategoryAbstract {
 
@@ -50,10 +51,12 @@ public abstract class CategoryAbstract {
     }
 
     @SideOnly(Side.CLIENT)
-    public abstract void draw(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight, int mouseX, int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem);
+    public abstract void draw(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight,
+            int mouseX, int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem);
 
     @SideOnly(Side.CLIENT)
-    public abstract void drawExtras(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight, int mouseX, int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem);
+    public abstract void drawExtras(Book book, int categoryX, int categoryY, int categoryWidth, int categoryHeight,
+            int mouseX, int mouseY, GuiBase guiBase, boolean drawOnLeft, RenderItem renderItem);
 
     public abstract boolean canSee(EntityPlayer player, ItemStack bookStack);
 
@@ -73,7 +76,8 @@ public abstract class CategoryAbstract {
 
         CategoryAbstract that = (CategoryAbstract) o;
         if (entryList != null ? !entryList.equals(that.entryList) : that.entryList != null) return false;
-        if (unlocCategoryName != null ? !unlocCategoryName.equals(that.unlocCategoryName) : that.unlocCategoryName != null)
+        if (unlocCategoryName != null ? !unlocCategoryName.equals(that.unlocCategoryName)
+                : that.unlocCategoryName != null)
             return false;
 
         return true;

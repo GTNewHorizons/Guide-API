@@ -1,11 +1,13 @@
 package amerifrance.guideapi.api;
 
-import amerifrance.guideapi.api.base.Book;
-import com.google.gson.GsonBuilder;
-import net.minecraft.item.ItemStack;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+import amerifrance.guideapi.api.base.Book;
+
+import com.google.gson.GsonBuilder;
 
 public class GuideRegistry {
 
@@ -30,7 +32,6 @@ public class GuideRegistry {
     public static Book getBook(int index) {
         return bookList.get(index);
     }
-
 
     /**
      * @param book - The book of which to get the index

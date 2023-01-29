@@ -12,6 +12,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.oredict.OreDictionary;
+
 import amerifrance.guideapi.ModInformation;
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
@@ -58,28 +59,34 @@ public class PageFurnaceRecipe extends PageBase {
 
         this.input = new ItemStack(Blocks.fire);
 
-        if (!OreDictionary.getOres(input).isEmpty())
-            for (int i = 0; i < OreDictionary.getOres(input).size(); i++) {
-                ItemStack stack = OreDictionary.getOres(input).get(i);
+        if (!OreDictionary.getOres(input).isEmpty()) for (int i = 0; i < OreDictionary.getOres(input).size(); i++) {
+            ItemStack stack = OreDictionary.getOres(input).get(i);
 
-                this.input = stack;
-                this.output = FurnaceRecipes.smelting().getSmeltingResult(stack);
-            }
+            this.input = stack;
+            this.output = FurnaceRecipes.smelting().getSmeltingResult(stack);
+        }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
+    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX,
+            int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
 
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(ModInformation.GUITEXLOC + "recipe_elements.png"));
+        Minecraft.getMinecraft().getTextureManager()
+                .bindTexture(new ResourceLocation(ModInformation.GUITEXLOC + "recipe_elements.png"));
         guiBase.drawTexturedModalRect(guiLeft + 42, guiTop + 53, 0, 65, 105, 65);
 
-        guiBase.drawCenteredString(fontRenderer, StatCollector.translateToLocal("text.furnace.smelting"), guiLeft + guiBase.xSize / 2, guiTop + 12, 0);
+        guiBase.drawCenteredString(
+                fontRenderer,
+                StatCollector.translateToLocal("text.furnace.smelting"),
+                guiLeft + guiBase.xSize / 2,
+                guiTop + 12,
+                0);
 
         int x = guiLeft + 66;
         int y = guiTop + 77;
         GuiHelper.drawItemStack(input, x, y);
-        
+
         List<String> tooltip = null;
         if (GuiHelper.isMouseBetween(mouseX, mouseY, x, y, 15, 15)) {
             tooltip = GuiHelper.getTooltip(input);
@@ -94,11 +101,16 @@ public class PageFurnaceRecipe extends PageBase {
             tooltip = GuiHelper.getTooltip(output);
         }
         if (output.getItem() == Item.getItemFromBlock(Blocks.fire)) {
-            guiBase.drawCenteredString(fontRenderer, StatCollector.translateToLocal("text.furnace.error"), guiLeft + guiBase.xSize / 2, guiTop + 4 * guiBase.ySize / 6, 0xED073D);
+            guiBase.drawCenteredString(
+                    fontRenderer,
+                    StatCollector.translateToLocal("text.furnace.error"),
+                    guiLeft + guiBase.xSize / 2,
+                    guiTop + 4 * guiBase.ySize / 6,
+                    0xED073D);
         }
-        
+
         if (tooltip != null) {
-        	guiBase.func_146283_a(tooltip, mouseX, mouseY);
+            guiBase.func_146283_a(tooltip, mouseX, mouseY);
         }
     }
 

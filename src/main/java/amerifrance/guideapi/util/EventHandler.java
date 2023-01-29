@@ -1,5 +1,12 @@
 package amerifrance.guideapi.util;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.event.AnvilUpdateEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+
 import amerifrance.guideapi.ConfigHandler;
 import amerifrance.guideapi.ModInformation;
 import amerifrance.guideapi.api.GuideAPIItems;
@@ -8,12 +15,6 @@ import amerifrance.guideapi.api.base.Book;
 import amerifrance.guideapi.api.util.NBTBookTags;
 import amerifrance.guideapi.items.ItemLostPage;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 public class EventHandler {
 
@@ -37,8 +38,7 @@ public class EventHandler {
     public NBTTagCompound getModTag(EntityPlayer player, String modName) {
         NBTTagCompound tag = player.getEntityData();
         NBTTagCompound persistTag;
-        if (tag.hasKey(EntityPlayer.PERSISTED_NBT_TAG))
-            persistTag = tag.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
+        if (tag.hasKey(EntityPlayer.PERSISTED_NBT_TAG)) persistTag = tag.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
         else {
             persistTag = new NBTTagCompound();
             tag.setTag(EntityPlayer.PERSISTED_NBT_TAG, persistTag);
@@ -58,16 +58,15 @@ public class EventHandler {
         ItemStack left = event.left;
         ItemStack right = event.right;
 
-        if (left == null || right == null || !right.hasTagCompound())
-            return;
+        if (left == null || right == null || !right.hasTagCompound()) return;
 
         if (left.getItem() == GuideAPIItems.guideBook && right.getItem() == GuideAPIItems.lostPage) {
             if (ItemLostPage.getPageCharacteristics(right) != null) {
-                if (left.getItemDamage() == GuideRegistry.getIndexOf((Book) ItemLostPage.getPageCharacteristics(right)[0])) {
+                if (left.getItemDamage()
+                        == GuideRegistry.getIndexOf((Book) ItemLostPage.getPageCharacteristics(right)[0])) {
                     ItemStack output = left.copy();
 
-                    if (!output.hasTagCompound())
-                        output.setTagCompound(new NBTTagCompound());
+                    if (!output.hasTagCompound()) output.setTagCompound(new NBTTagCompound());
 
                     output.stackTagCompound.setBoolean(right.stackTagCompound.getString(NBTBookTags.KEY_TAG), true);
                     event.output = output;

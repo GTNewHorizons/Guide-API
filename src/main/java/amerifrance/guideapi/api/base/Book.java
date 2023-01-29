@@ -1,13 +1,14 @@
 package amerifrance.guideapi.api.base;
 
-import amerifrance.guideapi.ModInformation;
-import amerifrance.guideapi.api.abstraction.CategoryAbstract;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
+
+import amerifrance.guideapi.ModInformation;
+import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 
 public class Book {
 
@@ -30,17 +31,23 @@ public class Book {
      * @param unlocBookTitle      - Unlocalized name for a book title
      * @param unlocWelcomeMessage - Unlocalized welcome message
      * @param unlocDisplayName    - Unlocalized item display name
-     * @param author              - Author of the book. Meant for the modid/modname so the book is displayed when the user searches the mod in NEI
+     * @param author              - Author of the book. Meant for the modid/modname so the book is displayed when the
+     *                            user searches the mod in NEI
      * @param pageTexture         - Texture for book's page
      * @param outlineTexture      - Texture for book outline
      * @param itemTexture         - Custom texture for the book. Disables the coloring on item
      * @param bookColor           - Color for the book. If an itemTexture is set, only affects GUI color
      * @param spawnWithBook       - Whether a player gets this book on the first time joining a world
      * @param isLostBook          - Pages become dungeon loot
-     * @param lootChance          - Chance for pages to generate as loot. 1 = Golden Apples, 100 = Iron Ingot, 1000 = Basically override everything
-     * @param chestHooks          - Types of dungeon chests to generate pages in. See {@link net.minecraftforge.common.ChestGenHooks}
+     * @param lootChance          - Chance for pages to generate as loot. 1 = Golden Apples, 100 = Iron Ingot, 1000 =
+     *                            Basically override everything
+     * @param chestHooks          - Types of dungeon chests to generate pages in. See
+     *                            {@link net.minecraftforge.common.ChestGenHooks}
      */
-    public Book(List<CategoryAbstract> categoryList, String unlocBookTitle, String unlocWelcomeMessage, String unlocDisplayName, String author, ResourceLocation pageTexture, ResourceLocation outlineTexture, String itemTexture, Color bookColor, boolean spawnWithBook, boolean isLostBook, int lootChance, String[] chestHooks) {
+    public Book(List<CategoryAbstract> categoryList, String unlocBookTitle, String unlocWelcomeMessage,
+            String unlocDisplayName, String author, ResourceLocation pageTexture, ResourceLocation outlineTexture,
+            String itemTexture, Color bookColor, boolean spawnWithBook, boolean isLostBook, int lootChance,
+            String[] chestHooks) {
         this.categoryList = categoryList;
         this.unlocBookTitle = unlocBookTitle;
         this.unlocWelcomeMessage = unlocWelcomeMessage;
@@ -60,7 +67,8 @@ public class Book {
      * Deprecated in favor of {@link amerifrance.guideapi.api.util.BookBuilder}
      */
     @Deprecated
-    public Book(List<CategoryAbstract> categoryList, String unlocBookTitle, String unlocWelcomeMessage, String unlocDisplayName, ResourceLocation pageTexture, ResourceLocation outlineTexture, Color bookColor) {
+    public Book(List<CategoryAbstract> categoryList, String unlocBookTitle, String unlocWelcomeMessage,
+            String unlocDisplayName, ResourceLocation pageTexture, ResourceLocation outlineTexture, Color bookColor) {
         this.categoryList = categoryList;
         this.unlocBookTitle = unlocBookTitle;
         this.unlocWelcomeMessage = unlocWelcomeMessage;
@@ -75,7 +83,8 @@ public class Book {
      * Deprecated in favor of {@link amerifrance.guideapi.api.util.BookBuilder}
      */
     @Deprecated
-    public Book(List<CategoryAbstract> categoryList, String unlocBookTitle, String unlocWelcomeMessage, String unlocDisplayName, Color bookColor) {
+    public Book(List<CategoryAbstract> categoryList, String unlocBookTitle, String unlocWelcomeMessage,
+            String unlocDisplayName, Color bookColor) {
         this.categoryList = categoryList;
         this.unlocBookTitle = unlocBookTitle;
         this.unlocWelcomeMessage = unlocWelcomeMessage;
@@ -90,7 +99,8 @@ public class Book {
      * Deprecated in favor of {@link amerifrance.guideapi.api.util.BookBuilder}
      */
     @Deprecated
-    public Book(List<CategoryAbstract> categoryList, String unlocBookTitle, String unlocWelcomeMessage, String unlocDisplayName, Color bookColor, boolean spawnWithBook) {
+    public Book(List<CategoryAbstract> categoryList, String unlocBookTitle, String unlocWelcomeMessage,
+            String unlocDisplayName, Color bookColor, boolean spawnWithBook) {
         this.categoryList = categoryList;
         this.unlocBookTitle = unlocBookTitle;
         this.unlocWelcomeMessage = unlocWelcomeMessage;
@@ -167,7 +177,8 @@ public class Book {
             return false;
         if (unlocDisplayName != null ? !unlocDisplayName.equals(book.unlocDisplayName) : book.unlocDisplayName != null)
             return false;
-        if (unlocWelcomeMessage != null ? !unlocWelcomeMessage.equals(book.unlocWelcomeMessage) : book.unlocWelcomeMessage != null)
+        if (unlocWelcomeMessage != null ? !unlocWelcomeMessage.equals(book.unlocWelcomeMessage)
+                : book.unlocWelcomeMessage != null)
             return false;
 
         return true;

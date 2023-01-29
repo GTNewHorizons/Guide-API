@@ -1,5 +1,10 @@
 package amerifrance.guideapi.pages;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
+
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.base.Book;
@@ -8,10 +13,6 @@ import amerifrance.guideapi.api.util.GuiHelper;
 import amerifrance.guideapi.gui.GuiBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 
 /**
  * Use {@link PageTextImage} instead
@@ -37,19 +38,30 @@ public class PageUnlocImage extends PageBase {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
+    public void draw(Book book, CategoryAbstract category, EntryAbstract entry, int guiLeft, int guiTop, int mouseX,
+            int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(image);
         if (drawAtTop) {
             GuiHelper.drawSizedIconWithoutColor(guiLeft + 50, guiTop + 12, guiBase.xSize, guiBase.ySize, 0);
 
             fontRenderer.setUnicodeFlag(true);
-            fontRenderer.drawSplitString(StatCollector.translateToLocal(unlocText), guiLeft + 39, guiTop + 112, 3 * guiBase.xSize / 5, 0);
+            fontRenderer.drawSplitString(
+                    StatCollector.translateToLocal(unlocText),
+                    guiLeft + 39,
+                    guiTop + 112,
+                    3 * guiBase.xSize / 5,
+                    0);
             fontRenderer.setUnicodeFlag(false);
         } else {
             GuiHelper.drawSizedIconWithoutColor(guiLeft + 50, guiTop + 60, guiBase.xSize, guiBase.ySize, 0);
 
             fontRenderer.setUnicodeFlag(true);
-            fontRenderer.drawSplitString(StatCollector.translateToLocal(unlocText), guiLeft + 39, guiTop + 12, 3 * guiBase.xSize / 5, 0);
+            fontRenderer.drawSplitString(
+                    StatCollector.translateToLocal(unlocText),
+                    guiLeft + 39,
+                    guiTop + 12,
+                    3 * guiBase.xSize / 5,
+                    0);
             fontRenderer.setUnicodeFlag(false);
         }
     }

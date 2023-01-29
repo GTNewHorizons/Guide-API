@@ -1,13 +1,14 @@
 package amerifrance.guideapi.wrappers;
 
-import amerifrance.guideapi.api.abstraction.CategoryAbstract;
-import amerifrance.guideapi.api.base.Book;
-import amerifrance.guideapi.api.util.GuiHelper;
-import amerifrance.guideapi.gui.GuiBase;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
+import amerifrance.guideapi.api.abstraction.CategoryAbstract;
+import amerifrance.guideapi.api.base.Book;
+import amerifrance.guideapi.api.util.GuiHelper;
+import amerifrance.guideapi.gui.GuiBase;
 
 public class CategoryWrapper extends AbstractWrapper {
 
@@ -20,7 +21,9 @@ public class CategoryWrapper extends AbstractWrapper {
     public boolean drawOnLeft;
     public ItemStack bookStack;
 
-    public CategoryWrapper(Book book, CategoryAbstract category, int x, int y, int width, int height, EntityPlayer player, FontRenderer renderer, RenderItem renderItem, boolean drawOnLeft, ItemStack bookStack) {
+    public CategoryWrapper(Book book, CategoryAbstract category, int x, int y, int width, int height,
+            EntityPlayer player, FontRenderer renderer, RenderItem renderItem, boolean drawOnLeft,
+            ItemStack bookStack) {
         this.book = book;
         this.category = category;
         this.x = x;
@@ -35,8 +38,7 @@ public class CategoryWrapper extends AbstractWrapper {
     }
 
     @Override
-    public void onHoverOver(int mouseX, int mouseY) {
-    }
+    public void onHoverOver(int mouseX, int mouseY) {}
 
     @Override
     public boolean canPlayerSee() {

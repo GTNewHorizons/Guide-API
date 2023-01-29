@@ -1,5 +1,11 @@
 package amerifrance.guideapi.entries;
 
+import java.awt.*;
+import java.util.List;
+
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.item.ItemStack;
+
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.IPage;
 import amerifrance.guideapi.api.base.Book;
@@ -8,11 +14,6 @@ import amerifrance.guideapi.api.util.GuiHelper;
 import amerifrance.guideapi.gui.GuiBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.item.ItemStack;
-
-import java.awt.*;
-import java.util.List;
 
 public class EntryItemStack extends EntryBase {
 
@@ -30,8 +31,8 @@ public class EntryItemStack extends EntryBase {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void drawExtras(Book book, CategoryAbstract category, int entryX, int entryY, int entryWidth, int entryHeight, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
-        if (stack != null)
-            GuiHelper.drawScaledItemStack(stack, entryX + 2, entryY, 0.5F);
+    public void drawExtras(Book book, CategoryAbstract category, int entryX, int entryY, int entryWidth,
+            int entryHeight, int mouseX, int mouseY, GuiBase guiBase, FontRenderer fontRenderer) {
+        if (stack != null) GuiHelper.drawScaledItemStack(stack, entryX + 2, entryY, 0.5F);
     }
 }
