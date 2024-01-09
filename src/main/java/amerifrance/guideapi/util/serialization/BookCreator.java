@@ -10,6 +10,10 @@ import net.minecraft.item.ItemStack;
 
 import org.apache.commons.io.filefilter.FileFilterUtils;
 
+import com.google.common.collect.Maps;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+
 import amerifrance.guideapi.GuideAPI;
 import amerifrance.guideapi.api.GuideRegistry;
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
@@ -18,10 +22,6 @@ import amerifrance.guideapi.api.abstraction.IPage;
 import amerifrance.guideapi.api.base.Book;
 import amerifrance.guideapi.api.util.BookBuilder;
 import amerifrance.guideapi.interfaces.ITypeReader;
-
-import com.google.common.collect.Maps;
-import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import cpw.mods.fml.common.registry.GameData;
 
 public class BookCreator {

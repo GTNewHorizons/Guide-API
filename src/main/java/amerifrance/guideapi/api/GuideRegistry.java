@@ -5,9 +5,9 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import amerifrance.guideapi.api.base.Book;
-
 import com.google.gson.GsonBuilder;
+
+import amerifrance.guideapi.api.base.Book;
 
 public class GuideRegistry {
 

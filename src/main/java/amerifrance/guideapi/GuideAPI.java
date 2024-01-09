@@ -8,6 +8,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
+import com.google.gson.GsonBuilder;
+
 import amerifrance.guideapi.api.GuideRegistry;
 import amerifrance.guideapi.items.ItemsRegistry;
 import amerifrance.guideapi.network.PacketHandler;
@@ -15,9 +17,6 @@ import amerifrance.guideapi.proxies.CommonProxy;
 import amerifrance.guideapi.util.EventHandler;
 import amerifrance.guideapi.util.LootGenerator;
 import amerifrance.guideapi.util.serialization.BookCreator;
-
-import com.google.gson.GsonBuilder;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;

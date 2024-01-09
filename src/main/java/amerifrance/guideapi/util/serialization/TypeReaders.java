@@ -7,6 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.abstraction.IPage;
 import amerifrance.guideapi.api.base.CategoryBase;
@@ -16,9 +19,6 @@ import amerifrance.guideapi.entries.EntryText;
 import amerifrance.guideapi.entries.EntryUniText;
 import amerifrance.guideapi.interfaces.ITypeReader;
 import amerifrance.guideapi.pages.*;
-
-import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 
 public abstract class TypeReaders<T> implements ITypeReader<T> {
 

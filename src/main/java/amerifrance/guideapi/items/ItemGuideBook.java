@@ -13,6 +13,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
+import com.google.common.base.Strings;
+
 import amerifrance.guideapi.GuideAPI;
 import amerifrance.guideapi.ModInformation;
 import amerifrance.guideapi.api.GuideRegistry;
@@ -20,9 +22,6 @@ import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
 import amerifrance.guideapi.api.abstraction.IGuideLinked;
 import amerifrance.guideapi.api.base.Book;
-
-import com.google.common.base.Strings;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import gnu.trove.map.TIntObjectMap;
