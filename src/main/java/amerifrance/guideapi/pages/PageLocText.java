@@ -1,7 +1,5 @@
 package amerifrance.guideapi.pages;
 
-import java.awt.*;
-
 import net.minecraft.client.gui.FontRenderer;
 
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;

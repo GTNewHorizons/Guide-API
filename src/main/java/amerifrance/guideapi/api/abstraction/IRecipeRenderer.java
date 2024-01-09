@@ -5,11 +5,10 @@ import java.util.List;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.crafting.IRecipe;
 
-import amerifrance.guideapi.api.base.Book;
-import amerifrance.guideapi.gui.GuiBase;
-
 import com.google.common.collect.Lists;
 
+import amerifrance.guideapi.api.base.Book;
+import amerifrance.guideapi.gui.GuiBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

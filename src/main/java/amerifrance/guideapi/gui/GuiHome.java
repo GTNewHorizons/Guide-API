@@ -1,6 +1,6 @@
 package amerifrance.guideapi.gui;
 
-import java.awt.*;
+import java.awt.Color;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -11,6 +11,8 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
+import com.google.common.collect.HashMultimap;
+
 import amerifrance.guideapi.api.abstraction.CategoryAbstract;
 import amerifrance.guideapi.api.base.Book;
 import amerifrance.guideapi.buttons.ButtonNext;
@@ -18,8 +20,6 @@ import amerifrance.guideapi.buttons.ButtonPrev;
 import amerifrance.guideapi.network.PacketHandler;
 import amerifrance.guideapi.network.PacketSyncHome;
 import amerifrance.guideapi.wrappers.CategoryWrapper;
-
-import com.google.common.collect.HashMultimap;
 
 public class GuiHome extends GuiBase {
 
