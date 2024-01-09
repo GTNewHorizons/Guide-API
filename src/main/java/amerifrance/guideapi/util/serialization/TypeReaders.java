@@ -7,7 +7,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 
-import com.google.gson.*;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
 import com.google.gson.reflect.TypeToken;
 
 import amerifrance.guideapi.api.abstraction.EntryAbstract;
@@ -18,7 +23,16 @@ import amerifrance.guideapi.categories.CategoryItemStack;
 import amerifrance.guideapi.entries.EntryText;
 import amerifrance.guideapi.entries.EntryUniText;
 import amerifrance.guideapi.interfaces.ITypeReader;
-import amerifrance.guideapi.pages.*;
+import amerifrance.guideapi.pages.PageFurnaceRecipe;
+import amerifrance.guideapi.pages.PageIRecipe;
+import amerifrance.guideapi.pages.PageImage;
+import amerifrance.guideapi.pages.PageLocImage;
+import amerifrance.guideapi.pages.PageLocItemStack;
+import amerifrance.guideapi.pages.PageLocText;
+import amerifrance.guideapi.pages.PageSound;
+import amerifrance.guideapi.pages.PageUnlocImage;
+import amerifrance.guideapi.pages.PageUnlocItemStack;
+import amerifrance.guideapi.pages.PageUnlocText;
 
 public abstract class TypeReaders<T> implements ITypeReader<T> {
 

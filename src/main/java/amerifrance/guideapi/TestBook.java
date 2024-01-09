@@ -1,6 +1,6 @@
 package amerifrance.guideapi;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 
 import net.minecraft.init.Blocks;
@@ -21,7 +21,11 @@ import amerifrance.guideapi.api.util.PageHelper;
 import amerifrance.guideapi.categories.CategoryItemStack;
 import amerifrance.guideapi.categories.CategoryResourceLocation;
 import amerifrance.guideapi.entries.EntryText;
-import amerifrance.guideapi.pages.*;
+import amerifrance.guideapi.pages.PageFurnaceRecipe;
+import amerifrance.guideapi.pages.PageIRecipe;
+import amerifrance.guideapi.pages.PageImage;
+import amerifrance.guideapi.pages.PageSound;
+import amerifrance.guideapi.pages.PageText;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TestBook {

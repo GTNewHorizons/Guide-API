@@ -1,6 +1,6 @@
 package amerifrance.guideapi.gui;
 
-import java.awt.*;
+import java.awt.Color;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;

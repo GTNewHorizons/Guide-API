@@ -1,6 +1,5 @@
 package amerifrance.guideapi.entries;
 
-import java.awt.*;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;

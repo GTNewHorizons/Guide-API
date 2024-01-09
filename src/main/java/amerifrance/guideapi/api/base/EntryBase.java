@@ -1,6 +1,6 @@
 package amerifrance.guideapi.api.base;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
